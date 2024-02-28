@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import { Button } from '$lib/components/ui/button'
+    import { invoke } from '@tauri-apps/api'
+    import { open } from '@tauri-apps/api/dialog'
+
+    const click = async () => {
+        const response = await invoke('test')
+
+        console.log(response)
+    }
+</script>
+
+<Button on:click={click}>
+    Test
+</Button>
