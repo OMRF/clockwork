@@ -1,13 +1,13 @@
 use std::error::Error;
 use std::path::Path;
-use chrono::NaiveDate;
-use csv::{Reader, ReaderBuilder};
 
-#[derive(Debug)]
+use chrono::NaiveDate;
+use csv::Reader;
+
+#[derive(Debug, Clone)]
 pub struct Rat {
-    pub id: u32,
+    pub id: i64,
     pub dob: NaiveDate,
-    pub epoch: i64,
 }
 
 pub fn parse(file: &Path) -> Result<Vec<Rat>, Box<dyn Error>>
@@ -22,8 +22,7 @@ pub fn parse(file: &Path) -> Result<Vec<Rat>, Box<dyn Error>>
 
         rats.push(Rat {
             id: rat.get(0).unwrap().parse()?,
-            dob: dob.clone(),
-            epoch: dob.and_hms_opt(0, 0, 0).unwrap().timestamp(),
+            dob,
         });
     }
 
