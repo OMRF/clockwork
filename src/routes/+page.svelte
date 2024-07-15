@@ -18,12 +18,6 @@
     import Spinner from '$lib/components/Spinner.svelte'
     import { toast } from 'svelte-sonner'
 
-    const click = async () => {
-        const response = await invoke('test')
-
-        console.log(response)
-    }
-
     const form = superForm(defaults({
         allowedDays: [1, 2, 3, 4, 5],
         ageMonths: 24,
